@@ -39,7 +39,7 @@ export class AuthenticationService {
      }
 
 
-    
+// User sign in function
 SignIn( email:any, password:any, rememberMe: boolean = false){
   return this.afAuth.signInWithEmailAndPassword(email,password)
   .then((result)=>{
@@ -69,6 +69,7 @@ SignIn( email:any, password:any, rememberMe: boolean = false){
 // }
 
 
+// User sign-up function 
 SignUp(displayName: string, email:any, password:any): Promise<any>{
   return this.afAuth.createUserWithEmailAndPassword(email,password)
   .then((result)=>{
@@ -85,7 +86,7 @@ SignUp(displayName: string, email:any, password:any): Promise<any>{
 }
 
 
-
+// User can reset thier password by using this function
 ForgotPassword(passwordResetEmail:any){
   return this.afAuth.sendPasswordResetEmail(passwordResetEmail)
   .then(()=>{
@@ -96,12 +97,14 @@ ForgotPassword(passwordResetEmail:any){
   })
 }
 
+// Logout function
 SignOut(){
   return this.afAuth.signOut().then(()=>{
     localStorage.removeItem('user')
     this.router.navigate(['login-form'])
   })
 }
+
 
 SendVerificationMail() {
   return this.afAuth.currentUser
